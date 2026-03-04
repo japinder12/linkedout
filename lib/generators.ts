@@ -50,7 +50,7 @@ export function makeTitleGenerators(domain: DomainKey, next: () => number, opts?
 
 export function memeifyFactory(seedMix: number) {
   const next = makeRng(seedMix ^ 0x5f3759df);
-  const EMOJIS = ["🚀","🔥","✨","🏆","📈","🧠","🤝","🦄","⚡","🛠️","🧩","🌐","🛡️","🥇","💼","🎯"] as const;
+  const EMOJIS = ["🚀","🔥","✨","🏆","📈","🧠","🤝","🦄","⚡","🛠️","🧩","🌐","🛡️","🥇","💼","🎯","🎛️","🛰️","🧊","🪩"] as const;
   const BRAGS = [
     "driving impact at scale",
     "thought leadership on tap",
@@ -61,6 +61,15 @@ export function memeifyFactory(seedMix: number) {
     "enterprise-ready vibes",
     "OKRs in my DNA",
     "storytelling + systems",
+    "dashboards so clean they sparkle",
+    "meetings replaced with memos",
+    "decks that close deals themselves",
+    "latency shaved in every handoff",
+    "playbooks for every fire drill",
+    "burnout-free hustle",
+    "roadmaps that actually ship",
+    "governance without the gloom",
+    "memes per minute > tasks per minute",
   ] as const;
   const ENDORSE = [
     "99+ CEO endorsements",
@@ -70,6 +79,10 @@ export function memeifyFactory(seedMix: number) {
     "VCs agree: 10x",
     "Board-ready presence",
     "500+ intros on speed dial",
+    "Recommended by 12 PMOs",
+    "Designers say my cards align",
+    "Ops teams call me a cheat code",
+    "Wins team retros on vibes alone",
   ] as const;
   return (base: string) => {
     const e1 = EMOJIS[Math.floor(next() * EMOJIS.length)];
