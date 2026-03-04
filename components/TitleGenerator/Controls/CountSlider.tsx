@@ -7,9 +7,12 @@ type Props = { isDark: boolean; count: number; setCount: (n: number) => void };
 export default function CountSlider({ isDark, count, setCount }: Props) {
   const label = isDark ? "text-slate-300/80" : "text-slate-700/80";
   const track = isDark ? "bg-slate-600/30" : "bg-slate-300/50";
+  const halo = isDark ? "rgba(125, 211, 252, 0.18)" : "rgba(59, 130, 246, 0.18)";
+
+  const haloStyle = { "--slider-halo": halo } as React.CSSProperties;
 
   return (
-    <div className="min-w-0">
+    <div className="min-w-0" style={haloStyle}>
       <label
         htmlFor="count"
         className={`mb-2 block text-[11px] uppercase tracking-wide font-medium ${label}`}
@@ -50,11 +53,16 @@ export default function CountSlider({ isDark, count, setCount }: Props) {
           background: #ffffff; /* white knob */
           border: 2px solid rgba(255, 255, 255, 0.35);
           margin-top: -8px; /* <-- lifts knob to visually center on 2px bar */
-          box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
-          transition: box-shadow 120ms ease;
+          box-shadow: 0 0 0 4px var(--slider-halo, rgba(59, 130, 246, 0.18));
+          transition: box-shadow 120ms ease, transform 120ms ease;
+        }
+        input[type="range"]:hover::-webkit-slider-thumb {
+          box-shadow: 0 0 0 6px var(--slider-halo, rgba(59, 130, 246, 0.24));
+          transform: translateY(-0.5px);
         }
         input[type="range"]:focus-visible::-webkit-slider-thumb {
-          box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.25); /* subtle focus ring */
+          box-shadow: 0 0 0 8px var(--slider-halo, rgba(56, 189, 248, 0.25)),
+            0 0 0 3px rgba(56, 189, 248, 0.35); /* subtle focus ring */
         }
 
         /* Firefox */
@@ -68,9 +76,16 @@ export default function CountSlider({ isDark, count, setCount }: Props) {
           border-radius: 9999px;
           background: #ffffff;
           border: 2px solid rgba(255, 255, 255, 0.35);
+          box-shadow: 0 0 0 5px var(--slider-halo, rgba(59, 130, 246, 0.18));
+          transition: box-shadow 120ms ease, transform 120ms ease;
         }
         input[type="range"]:focus-visible::-moz-range-thumb {
-          box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.25);
+          box-shadow: 0 0 0 8px var(--slider-halo, rgba(56, 189, 248, 0.25)),
+            0 0 0 3px rgba(56, 189, 248, 0.35);
+        }
+        input[type="range"]:hover::-moz-range-thumb {
+          box-shadow: 0 0 0 6px var(--slider-halo, rgba(59, 130, 246, 0.24));
+          transform: translateY(-0.5px);
         }
 
         /* Edge */
