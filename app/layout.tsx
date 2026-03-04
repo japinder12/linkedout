@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ["latin"], display: "swap", variable: "--font-san
 const display = Space_Grotesk({ subsets: ["latin"], display: "swap", variable: "--font-display" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://linkedout-titles.vercel.app"),
   title: "LinkedOut — the LinkedIn title generator",
   description: "Generate absurdly serious LinkedIn titles in one click.",
   icons: {
